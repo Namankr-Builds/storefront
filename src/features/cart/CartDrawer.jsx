@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router"
 import {
   Sheet,
   SheetContent,
@@ -10,8 +11,14 @@ import { CartLineItem } from "./CartLineItem"
 import { formatINR } from "@/lib/money"
 
 export function CartDrawer({ open, onOpenChange }) {
+  const navigate = useNavigate()
   const items = useCartStore((s) => s.items)
   const totalInPaise = useCartStore((s) => s.totalInPaise())
+
+  const handleCheckout = () => {
+    onOpenChange(false)
+    navigate("/checkout/address")
+  }
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
@@ -36,7 +43,9 @@ export function CartDrawer({ open, onOpenChange }) {
               <span>Total</span>
               <span>{formatINR(totalInPaise)}</span>
             </div>
-            <Button className="w-full">Checkout</Button>
+            <Button className="w-full" onClick={handleCheckout}>
+              Checkout
+            </Button>
           </div>
         )}
       </SheetContent>

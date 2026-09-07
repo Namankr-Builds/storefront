@@ -11,12 +11,13 @@ export function AddToCartControl({ product }) {
   const line = items.find((i) => i.productId === product.id)
 
   if (product.stock === 0) {
-    return <Button disabled>Out of stock</Button>
+    return <Button className="w-full" disabled>Out of stock</Button>
   }
 
   if (!line) {
     return (
       <Button
+        className="w-full"
         onClick={() => {
           addItem(product, 1)
           toast.success("Added to cart", { description: product.title })

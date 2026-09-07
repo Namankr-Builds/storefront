@@ -42,7 +42,11 @@ export function Component() {
       </nav>
 
       <div className="grid md:grid-cols-2 gap-8">
-        <ProductGallery images={product.images} title={product.title} />
+        <ProductGallery
+          images={product.images}
+          title={product.title}
+          productId={product.id}
+        />
 
         <div>
           <h1 className="text-2xl font-semibold">{product.title}</h1>

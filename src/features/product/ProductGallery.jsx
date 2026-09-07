@@ -1,12 +1,19 @@
 import { useState } from "react"
+import { WishlistButton } from "../wishlist/WishlistButton"
 
-export function ProductGallery({ images, title }) {
+export function ProductGallery({ images, title, productId }) {
   const [active, setActive] = useState(0)
   const safeImages = images.length > 0 ? images : ["/placeholder.png"]
 
   return (
     <div>
-      <div className="aspect-square rounded-lg overflow-hidden bg-neutral-100">
+      <div className="relative aspect-square rounded-lg overflow-hidden bg-neutral-100">
+        <div className="absolute top-3 right-3 z-10">
+          <WishlistButton
+            productId={productId}
+            className="rounded-full bg-white p-2 shadow-md hover:bg-neutral-50"
+          />
+        </div>
         <img
           src={safeImages[active]}
           alt={title}
