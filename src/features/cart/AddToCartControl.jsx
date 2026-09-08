@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Minus, Plus } from "lucide-react"
 import { useCartStore } from "./store"
 import { toast } from "sonner"
+import { motion } from "motion/react"
 
 export function AddToCartControl({ product }) {
   const items = useCartStore((s) => s.items)
@@ -16,15 +17,11 @@ export function AddToCartControl({ product }) {
 
   if (!line) {
     return (
-      <Button
-        className="w-full"
-        onClick={() => {
-          addItem(product, 1)
-          toast.success("Added to cart", { description: product.title })
-        }}
-      >
-        Add to cart
-      </Button>
+      <motion.div whileTap={{ scale: 0.95 }}>
+        <Button onClick={() => { addItem(product, 1); toast.success("Added to cart") }}>
+          Add to cart
+        </Button>
+      </motion.div>
     )
   }
 
